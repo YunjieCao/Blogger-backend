@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 import pymysql
-from BloggerModel.models import Users
+# from BloggerModel.models import Users
 
 def hello(request):
     return HttpResponse("Hello world ! ")
@@ -8,8 +8,8 @@ def hello(request):
 def testdb(request):
     print(request)
     user_name = 'yunjie'
-    test1 = Users(name=user_name)
-    test1.save()
+    # test1 = Users(name=user_name)
+    # test1.save()
     return HttpResponse("<p>{} is successfully registered</p>".format(user_name))
 
 def try_connect():
