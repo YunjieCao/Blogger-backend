@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49a7c519-d887-463e-b84f-03acb0f0db06" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/blogger_backend/Users/user_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BloggerModel/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BloggerModel/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogger_backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogger_backend/Users/user_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/Users/user_info.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +133,7 @@
       <workItem from="1587865641276" duration="1496000" />
       <workItem from="1587871079215" duration="1381000" />
       <workItem from="1587912305586" duration="120000" />
-      <workItem from="1587913055626" duration="2131000" />
+      <workItem from="1587913055626" duration="2258000" />
     </task>
     <servers />
   </component>
