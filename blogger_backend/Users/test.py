@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 import pymysql
+import json
 # from BloggerModel.models import Users
 
 def hello(request):
@@ -10,15 +11,22 @@ def testdb(request):
     user_name = 'yunjie'
     # test1 = Users(name=user_name)
     # test1.save()
-    ret = HttpResponse()
-    ret['Access-Control-Allow-Origin'] = '*'
     data = {
         'Name': 'test1',
         'Gender': 'Male',
         'Occupation': 'Student',
         'Description': 'hello',
     }
-    ret['info'] = data
+    ret = HttpResponse(json.dumps(data))
+    ret['Access-Control-Allow-Origin'] = '*'
+    # ret['Content-Type'] = 'text/html'
+    # data = {
+    #     'Name': 'test1',
+    #     'Gender': 'Male',
+    #     'Occupation': 'Student',
+    #     'Description': 'hello',
+    # }
+    # ret['info'] = json.dumps(data)
     return ret
 
 def try_connect():
