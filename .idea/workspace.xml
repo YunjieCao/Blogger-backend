@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49a7c519-d887-463e-b84f-03acb0f0db06" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogger_backend/Users/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/Users/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogger_backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +131,7 @@
       <workItem from="1587072369786" duration="1019000" />
       <workItem from="1587128600862" duration="5879000" />
       <workItem from="1587842684794" duration="635000" />
-      <workItem from="1587865641276" duration="638000" />
+      <workItem from="1587865641276" duration="1306000" />
     </task>
     <servers />
   </component>
