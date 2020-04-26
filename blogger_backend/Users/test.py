@@ -10,7 +10,16 @@ def testdb(request):
     user_name = 'yunjie'
     # test1 = Users(name=user_name)
     # test1.save()
-    return HttpResponse("<p>{} is successfully registered</p>".format(user_name))
+    ret = HttpResponse()
+    ret['Access-Control-Allow-Origin'] = '*'
+    data = {
+        'Name': 'test1',
+        'Gender': 'Male',
+        'Occupation': 'Student',
+        'Description': 'hello',
+    }
+    ret['info'] = data
+    return ret
 
 def try_connect():
     db_connect_info = {
