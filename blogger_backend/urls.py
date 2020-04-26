@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .Users import test
+from .Users import user_info
 
 urlpatterns = [
     path('', test.hello),
     path('admin/', admin.site.urls),
     path('hello/', test.testdb),
+    path('profile/<int:user_id>', user_info.get_profile),
 ]

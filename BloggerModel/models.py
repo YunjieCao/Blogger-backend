@@ -9,6 +9,7 @@ class Users(models.Model):
     pwd = models.CharField(max_length=15, default='123456')
     birthday = models.DateField(default=timezone.now)
     email = models.CharField(max_length=30, unique=True, default=None)
+    occupation = models.CharField(max_length=20, default='Not Known')
     introduction = models.CharField(max_length=200, default=None)
 
 
