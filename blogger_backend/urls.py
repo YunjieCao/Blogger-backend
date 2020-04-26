@@ -17,10 +17,15 @@ from django.contrib import admin
 from django.urls import path
 from .Users import test
 from .Users import user_info
+from .Blogs import blog_list
+from .Blogs import new_blog
 
 urlpatterns = [
     path('', test.hello),
     path('admin/', admin.site.urls),
     path('hello/', test.testdb),
     path('profile/<int:user_id>', user_info.get_profile),
+    path('userInteraction/<int:target_id>', user_info.get_user_interaction),
+    path('blogs/<int:user_id>', blog_list.get_user_blog_list),
+    path('blogs/new', new_blog.post_new_blog),
 ]
