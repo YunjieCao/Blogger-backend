@@ -17,9 +17,10 @@ class Blogs(models.Model):
     id = models.AutoField(primary_key=True)
     author = models.ForeignKey(Users, on_delete=models.CASCADE, default=None)
     title = models.CharField(max_length=50, default=None)
+    description = models.CharField(max_length=200, default=None)
     content = models.CharField(max_length=20, default=None)
     # plan to use dynamodb to store content, only store key in mysql
-    timestamp = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 
 class Tags(models.Model):
@@ -39,7 +40,7 @@ class Comments(models.Model):
     tagid = models.ForeignKey(Tags, on_delete=models.CASCADE, default=None)
     content = content = models.CharField(max_length=20, default=None)
     # plan to use dynamodb to store content, only store key in mysql
-    timestamp = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 
 class FavoriteTags(models.Model):
@@ -68,4 +69,4 @@ class News(models.Model):
     title = models.CharField(max_length=50, default=None)
     content = models.CharField(max_length=20, default=None)
     # plan to use dynamodb to store content, only store key in mysql
-    timestamp = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
