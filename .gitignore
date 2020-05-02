@@ -5,3 +5,4 @@
 !.elasticbeanstalk/*.global.yml
 .idea/*
 blogger_backend/Blogs/__pycache__/*
+blogger_backend/Users/__pycache__/*
