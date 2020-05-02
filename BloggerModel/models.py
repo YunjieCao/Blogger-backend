@@ -39,7 +39,7 @@ class BlogTags(models.Model):
 class Comments(models.Model):
     commentid = models.AutoField(primary_key=True)
     blogid = models.ForeignKey(Blogs, on_delete=models.CASCADE, default=None)
-    tagid = models.ForeignKey(Tags, on_delete=models.CASCADE, default=None)
+    # tagid = models.ForeignKey(Tags, on_delete=models.CASCADE, default=None)
     content = content = models.CharField(max_length=20, default=None)
     # plan to use dynamodb to store content, only store key in mysql
     timestamp = models.DateTimeField(auto_now_add=True)
