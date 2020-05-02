@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 import pymysql
 import json
+import pymongo
+from bson.objectid import ObjectId
 # from BloggerModel.models import Users
 
 def hello(request):
@@ -50,6 +52,23 @@ def try_connect():
     )
     print('successfully connect')
 
+def try_mongodb():
+    client = pymongo.MongoClient(
+        "mongodb+srv://documents:cloudcomputing@cluster0-byuor.mongodb.net/test?retryWrites=true&w=majority")
+    db = client.test
+    temp = {'body': "hello world"}
+    # result=db.reviews.insert_one(temp)
+    # print(result.inserted_id) #
+
+    id = "5ead8cbd29a50a52fa522350"
+    obj = ObjectId(id)
+    res = db.reviews.find({"_id": obj})
+    # res = db.reviews.find({"body": "hello world"})
+    print(res)
+    for r in res:
+        print(r)
+
+
 
 if __name__=="__main__":
-    try_connect()
+    try_mongodb()
