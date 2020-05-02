@@ -5,6 +5,7 @@ from BloggerModel.models import Users
 
 
 def get_profile(request, user_id):
+    # TODO: try catch
     """
     get user profile according to user id
     :param request: request from frontend

@@ -3,6 +3,7 @@ import json
 from BloggerModel.models import Users
 from BloggerModel.models import UserInteractions
 
+# TODO: try catch
 
 def follow(request, follower_id, followee_id):
     """

@@ -5,6 +5,13 @@ from BloggerModel.models import Users
 
 
 def get_user_blog_list(request, user_id):
+    # TODO: try catch
+    """
+    get blogs of a user
+    :param request: request from frontend
+    :param user_id: the quried user id
+    :return: a list of blogs belonging to this user
+    """
     blog_list = Blogs.objects.filter(author_id=user_id).values('title', 'id', 'timestamp', 'description').order_by('-timestamp')[:10]
     user_info = Users.objects.filter(id=user_id).values('name', 'avatar')  # list of objects
     user_info = user_info[0]
