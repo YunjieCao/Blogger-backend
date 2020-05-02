@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 import json
 from BloggerModel.models import Users
-from BloggerModel.models import UserInteractions
+
 
 
 def get_profile(request, user_id):
     """
-
+    get user profile according to user id
     :param request: request from frontend
     :param user_id: user_id
     :return: basic information of this user
@@ -25,20 +25,4 @@ def get_profile(request, user_id):
     return ret
 
 
-def get_user_interaction(request, target_id):
-    """
-
-    :param request: request from frontend
-    :param target_id: target user id
-    :return: how many people follow this user && how many people are followed by this user
-    """
-    follower = UserInteractions.objects.filter(followee=target_id).count() # how many people follow target id
-    followee = UserInteractions.objects.filter(follower=target_id).count() # how many people target id follows
-    ret_data = {'follower': follower, 'followee': followee}
-
-    ret = HttpResponse(json.dumps(ret_data))
-    ret['Access-Control-Allow-Origin'] = '*'
-    # ret['Content-Type'] = 'text/html'
-
-    return ret
 

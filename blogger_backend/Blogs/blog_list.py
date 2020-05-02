@@ -3,6 +3,7 @@ import json
 from BloggerModel.models import Blogs
 from BloggerModel.models import Users
 
+
 def get_user_blog_list(request, user_id):
     blog_list = Blogs.objects.filter(author_id=user_id).values('title', 'id', 'timestamp', 'description').order_by('-timestamp')[:10]
     user_info = Users.objects.filter(id=user_id).values('name', 'avatar')  # list of objects

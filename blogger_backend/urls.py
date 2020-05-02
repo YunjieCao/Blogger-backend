@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from .Users import test
 from .Users import user_info
+from .Users import user_interaction
 from .Blogs import blog_list
 from .Blogs import new_blog
 
@@ -25,7 +26,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', test.testdb),
     path('profile/<int:user_id>', user_info.get_profile),
-    path('userInteraction/<int:target_id>', user_info.get_user_interaction),
+    path('userInteraction/<int:target_id>', user_interaction.get_user_interaction),
     path('blogs/<int:user_id>', blog_list.get_user_blog_list),
     path('blogs/new', new_blog.post_new_blog),
+    path('follow/<int:follower_id>/<int:followee_id>', user_interaction.follow),
+    path('unfollow/<int:follower_id>/<int:followee_id>', user_interaction.unfollow),
+    path('check/<int:follower_id>/<int:followee_id>', user_interaction.check_follow),
 ]
