@@ -11,6 +11,8 @@ class Users(models.Model):
     email = models.CharField(max_length=30, unique=True, default=None)
     occupation = models.CharField(max_length=20, default='Not Known')
     introduction = models.CharField(max_length=200, default=None)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    avatar = models.CharField(max_length=100, default='https://bootdey.com/img/Content/avatar/avatar3.png')
 
 
 class Blogs(models.Model):
