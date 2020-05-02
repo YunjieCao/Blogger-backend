@@ -2,6 +2,7 @@ from django.http import HttpResponse
 import json
 from BloggerModel.models import Blogs
 
+
 def get_user_blog_list(request, user_id):
     blog_list = Blogs.objects.filter(author_id=user_id).values('title', 'id', 'timestamp', 'description').order_by('-timestamp')[:10]
     ret_data = {}
