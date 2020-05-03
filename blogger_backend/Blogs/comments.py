@@ -34,28 +34,33 @@ def add_comment(request, blog_id, user_id):
 
 
 def retrieve_comment(request, blog_id):
-    # TODO: retrieve comment of a blog
+    """
+    retrieve comments for a specific blog
+    :param request: from frontend
+    :param blog_id: blog id
+    :return: a list of comments at most 10
+    """
+    # TODO: add try catch
     data = Comments.objects.filter(blog_id_id=blog_id).select_related('user_id').values('blog_id', 'user_id', 'content', 'user_id__name')  # list of objects
     mongodb = mongo.Mongo()
 
     ret_data = []
     for d in data:
-        temp = {}
-        print(d)
-        temp['content'] = d['content']
-
-
-        id = d['content']
-        obj = ObjectId(id)
+        mongo_id = d['content']
+        obj = ObjectId(mongo_id)
         res = mongodb.comment_collection.find({"_id": obj})
-        print(res)
-        ret_data.append(temp)
+        comment_body = ''
+        for r in res:
+            comment_body += r['comment']
+        d['content'] = comment_body
+        ret_data.append(d)
+        if len(ret_data) > 10:
+            break
 
     ret = dict()
     ret['data'] = ret_data
 
     ret = HttpResponse(json.dumps(ret))
     ret['Access-Control-Allow-Origin'] = '*'
-    # ret['Content-Type'] = 'text/html'
 
     return ret
