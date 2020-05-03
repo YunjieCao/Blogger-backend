@@ -13,7 +13,7 @@ class Users(models.Model):
     introduction = models.CharField(max_length=200, default=None)
     timestamp = models.DateTimeField(auto_now_add=True)
     avatar = models.CharField(max_length=100, default='https://bootdey.com/img/Content/avatar/avatar3.png')
-
+    gender = models.CharField(choices=((1, "male"), (2, "female"), (0, "not set")), max_length=10, default=0)
 
 class Blogs(models.Model):
     id = models.AutoField(primary_key=True)
