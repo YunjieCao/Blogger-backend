@@ -52,7 +52,7 @@ def get_news(request, news_id):
     # successfully log the data
     status_code = 200
     msg["message"] = "Successfully retrieved the blog."
-    msg["blog"] = news_info
+    msg["news"] = news_info
     ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'
     return ret
