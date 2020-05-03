@@ -74,15 +74,18 @@ def post_new_blog(request):
     try:
         new_article = Blogs(author= author, title = title, content = article_id, description = description)
         new_article.save()
+        blog_id = new_article.id # can only get after save
     except IntegrityError as e:
         msg["message"] = "Fail to store the data in sql. Error" + str(e)
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
     # suvessfully store
+
     status_code = 200
     msg["valid"] = True
-    msg['article_id'] = article_id #
+    msg['content_id'] = article_id #
+    msg['blog_id'] = blog_id
     msg["message"] = "Successfully save the articles and the contents."
     ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'
