@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49a7c519-d887-463e-b84f-03acb0f0db06" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/blogger_backend/Blogs/mongo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blogger_backend/Users/user_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/blogger_backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blogger_backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogger_backend/Blogs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/Blogs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogger_backend/Blogs/blog_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/Blogs/blog_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogger_backend/Blogs/comments.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/Blogs/comments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogger_backend/Users/user_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/Users/user_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogger_backend/Users/user_interaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/Users/user_interaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogger_backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogger_backend/Blogs/new_blog.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/Blogs/new_blog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogger_backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogger_backend/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +135,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Django Server.blogger_backend" />
+      <item itemvalue="Django server.blogger_backend" />
       <item itemvalue="Python.learn" />
       <item itemvalue="Python.manage" />
       <item itemvalue="Python.test" />
@@ -174,11 +171,12 @@
       <workItem from="1587928580516" duration="6930000" />
       <workItem from="1588381613917" duration="894000" />
       <workItem from="1588421206927" duration="16120000" />
+      <workItem from="1588448230248" duration="8022000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="836" y="396" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587936640173">
@@ -209,9 +207,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="1799" height="275" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1588433760439" />
-    <state x="475" y="187" key="SettingsEditor" timestamp="1588434421330">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="3663" y="158" key="SettingsEditor" timestamp="1588448255923">
+      <screen x="3240" y="0" width="1920" height="1040" />
     </state>
+    <state x="3663" y="158" key="SettingsEditor/0.0.1440.920/3240.0.1920.1040@3240.0.1920.1040" timestamp="1588448255923" />
     <state x="475" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1588434421330" />
     <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1588441120228">
       <screen x="67" y="27" width="1853" height="1053" />
