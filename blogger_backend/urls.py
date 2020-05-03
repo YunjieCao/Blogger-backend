@@ -21,6 +21,7 @@ from .Users import user_interaction
 from .Blogs import blog_list
 from .Blogs import new_blog
 from .Blogs import comments
+from .Users import user_login
 
 urlpatterns = [
     path('', test.hello),
@@ -34,4 +35,5 @@ urlpatterns = [
     path('unfollow/<int:follower_id>/<int:followee_id>', user_interaction.unfollow),
     path('check/<int:follower_id>/<int:followee_id>', user_interaction.check_follow),
     path('comment/<int:blog_id>/<int:user_id>', comments.add_comment),
+    path('login', user_login.user_login)
 ]
