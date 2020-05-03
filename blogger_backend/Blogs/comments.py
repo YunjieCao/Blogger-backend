@@ -32,6 +32,22 @@ def add_comment(request, blog_id, user_id):
     return ret
 
 
-def retrieve_comment(request):
+def retrieve_comment(request, blog_id):
     # TODO: retrieve comment of a blog
-    pass
+    data = Comments.objects.filter(blog_id_id=blog_id).select_related('user_id')#.values('content')  # list of objects
+
+    ret_data = []
+    for d in data:
+        temp = {}
+        print(d)
+        temp['content'] = d['content']
+        ret_data.append(temp)
+
+    ret = dict()
+    ret['data'] = ret_data
+
+    ret = HttpResponse(json.dumps(ret))
+    ret['Access-Control-Allow-Origin'] = '*'
+    # ret['Content-Type'] = 'text/html'
+
+    return ret
