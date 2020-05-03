@@ -49,8 +49,8 @@ def user_register(request):
         pwd= data["password"]
         name = data["name"]
         birthday = data["birthday"] if "birthday" in data else DEFAULT_BIRTHDAY_STR # if empty, enter default time
-        occupation = data["occupation"] if "occupation" in data else " "
-        introduction = data["introduction"] if "introduction" in data else DEFAULT_INTRO
+        occupation = str(data["occupation"]) if "occupation" in data else " "
+        introduction = str(data["introduction"]) if "introduction" in data else DEFAULT_INTRO
         avatar = data["avatar"] if "avatar" in data else DEFAULT_AVATAR
         gender = data["gender"] if "gender" in data else DEFAULT_GENDER_SET
         try:
