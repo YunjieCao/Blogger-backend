@@ -15,6 +15,7 @@ def user_login(request):
         "valid": False
     }
     status_code =  201
+    print(request)
     print(request.body)
     if not request.body:
         msg["message"] = "Lack key infomation"
@@ -50,4 +51,5 @@ def user_login(request):
         # ret['Content-Type'] = 'text/html'
     ret = HttpResponse(status= status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'
+    print(ret)
     return ret

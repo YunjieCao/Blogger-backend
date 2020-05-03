@@ -35,5 +35,5 @@ urlpatterns = [
     path('unfollow/<int:follower_id>/<int:followee_id>', user_interaction.unfollow),
     path('check/<int:follower_id>/<int:followee_id>', user_interaction.check_follow),
     path('comment/<int:blog_id>/<int:user_id>', comments.add_comment),
-    path('login/', user_login.user_login)
+    path('login', user_login.user_login)
 ]
