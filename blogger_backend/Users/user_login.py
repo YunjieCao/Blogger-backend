@@ -18,7 +18,7 @@ def user_login(request):
     print(request)
     print(request.body)
     if not request.body:
-        msg["message"] = "Lack key infomation"
+        msg["message"] = "Format error or lack key infomation"
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
