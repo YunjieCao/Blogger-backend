@@ -23,6 +23,8 @@ from .Blogs import new_blog
 from .Blogs import comments
 from .Users import user_login
 from .Users import user_register
+from .Blogs import get_blog
+from .News import get_news
 
 urlpatterns = [
     path('', test.hello),
@@ -32,6 +34,8 @@ urlpatterns = [
     path('userInteraction/<int:target_id>', user_interaction.get_user_interaction),
     path('blogs/<int:user_id>', blog_list.get_user_blog_list),
     path('blogs/new', new_blog.post_new_blog),
+    path('blogs/blog_id/<int:blog_id>', get_blog.get_blog),
+    path('news/news_id/<int:news_id>', get_news.get_news),
     path('follow/<int:follower_id>/<int:followee_id>', user_interaction.follow),
     path('unfollow/<int:follower_id>/<int:followee_id>', user_interaction.unfollow),
     path('check/<int:follower_id>/<int:followee_id>', user_interaction.check_follow),

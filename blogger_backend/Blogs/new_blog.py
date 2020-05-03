@@ -4,6 +4,8 @@ from BloggerModel.models import Blogs
 from blogger_backend.Blogs import mongo
 from BloggerModel.models import Users
 from django.db import IntegrityError
+from bs4 import BeautifulSoup
+
 DEFAULT_TITLE = "Untitled Article"
 DEFAULT_CONTENT = "Here is nothing yet ... "
 DEFAULT_DES_LEN = 20 # default length of description
@@ -54,14 +56,23 @@ def post_new_blog(request):
 
     title = str(data["title"]) if "title" in data else DEFAULT_TITLE
     content = str(data["content"]) if "content" in data else DEFAULT_CONTENT
-    description = str(data["description"]) if "description" in data else content[:DEFAULT_DES_LEN]
+    if "description" in  data:
+        description = str(data["description"])
+    else:
+        # generate description automatically
+        clean_content = BeautifulSoup(content, "lxml").text
+        description = clean_content[:DEFAULT_DES_LEN]
+        if len(description) < len(clean_content):
+            description += "... [ ClICK TO SEE MORE ] "
+        print(description)
+    # description = str(data["description"]) if "description" in data else content[:DEFAULT_DES_LEN]
 
    # store in mongo DB
    #  content_to_store = {"content": content}
     mongodb = mongo.Mongo()
 
     try:
-        result = mongodb.blog_collection.articles.insert_one({"content": content})
+        result = mongodb.blog_collection.contents.insert_one({"content": content})
         article_id = result.inserted_id
         article_id = str(article_id)
     except:

@@ -28,3 +28,4 @@ class Mongo(object):
 
         # collection for comments
         self.comment_collection = self.database.comments
+        self.news_collection = self.database.news

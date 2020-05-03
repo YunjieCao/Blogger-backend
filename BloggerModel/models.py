@@ -73,3 +73,4 @@ class News(models.Model):
     content = models.CharField(max_length=20, default=None)
     # plan to use dynamodb to store content, only store key in mysql
     timestamp = models.DateTimeField(auto_now_add=True)
+    url = models.CharField(max_length=300, default = None) # add url
