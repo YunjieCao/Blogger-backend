@@ -2,6 +2,7 @@ from blogger_backend.Blogs import mongo
 from django.http import HttpResponse
 import json
 import pymongo
+from bson.objectid import ObjectId
 from BloggerModel.models import Comments
 
 
@@ -20,12 +21,12 @@ def add_comment(request, blog_id, user_id):
     # print(data)
 
     mongodb = mongo.Mongo()
-    result = mongodb.comment_collection.reviews.insert_one(data)
+    result = mongodb.comment_collection.insert_one(data)
     # print(result.inserted_id)
     comment_id = result.inserted_id
     comment_id = str(comment_id)
     # print(comment_id)
-    comment = Comments(blog_id_id=blog_id, uesr_id_id=user_id, content=comment_id)
+    comment = Comments(blog_id_id=blog_id, user_id_id=user_id, content=comment_id)
     comment.save()
     ret = HttpResponse(status=200, reason="Successfully add a comment")
     ret['Access-Control-Allow-Origin'] = '*'
@@ -34,13 +35,20 @@ def add_comment(request, blog_id, user_id):
 
 def retrieve_comment(request, blog_id):
     # TODO: retrieve comment of a blog
-    data = Comments.objects.filter(blog_id_id=blog_id).select_related('user_id')#.values('content')  # list of objects
+    data = Comments.objects.filter(blog_id_id=blog_id).select_related('user_id').values('blog_id', 'user_id', 'content', 'user_id__name')  # list of objects
+    mongodb = mongo.Mongo()
 
     ret_data = []
     for d in data:
         temp = {}
         print(d)
         temp['content'] = d['content']
+
+
+        id = d['content']
+        obj = ObjectId(id)
+        res = mongodb.comment_collection.find({"_id": obj})
+        print(res)
         ret_data.append(temp)
 
     ret = dict()
