@@ -1,4 +1,4 @@
-import time
+import datetime
 from django.http import HttpResponse
 import json
 from BloggerModel.models import Blogs
@@ -11,11 +11,12 @@ def get_blog(request, blog_id):
     msg = {
         "message": ""
     }
-    status_code = 201
+    # status_code = 404
     # print(request)
     # print(request.body)
     if not blog_id:
-        msg["message"] = "Need blog id to retrive the infomation"
+        status_code = 400 # bad request
+        msg["message"] = "Need blog id to retrive the infomation."
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
@@ -24,7 +25,8 @@ def get_blog(request, blog_id):
     # judge whehter user exist
     blog = Blogs.objects.get(id=blog_id)
     if not blog:
-        msg["message"] = "Required blog does not exist"
+        status_code = 403
+        msg["message"] = "Required blog does not exist."
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
@@ -36,12 +38,16 @@ def get_blog(request, blog_id):
     print(content)
     if not content:
         # can also return error message
+        status_code = 404
+        msg["message"] = "Content of the targeted blog can not be retrieved."
         content_str= "[ERR 404]  NOT FOUND"
     else:
+        status_code = 200
+        msg["message"] = "Successfully retrieved the blog."
         content_str = content["content"]
 
     # print(blog.timestamp)
-    create_time = time.strftime("%Y-%m-%d %H:%M")
+    create_time = blog.timestamp.strftime("%Y-%m-%d %H:%M")
     blog_info = {
         "id": blog.id,
         "title": blog.title,
@@ -51,8 +57,7 @@ def get_blog(request, blog_id):
         "description": blog.description
     }
     # successfully log the data
-    status_code = 200
-    msg["message"] = "Successfully retrieved the blog."
+
     msg["blog"] = blog_info
     ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'
