@@ -44,5 +44,5 @@ urlpatterns = [
     path('comments/<int:blog_id>', comments.retrieve_comment),
     path('login', user_login.user_login),
     path('register', user_register.user_register),
-    path('like/<int:blog_id>/<int:user_id>', user_blog.process_like_dislike),
+    path('like/<int:blog_id>/<int:user_id>/<int:action_type>', user_blog.process_like_dislike),
 ]
