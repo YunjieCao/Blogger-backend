@@ -8,12 +8,8 @@ django-mysql-rds==0.3.1
 dnspython==1.16.0
 docutils==0.15.2
 jmespath==0.9.5
-mysqlclient==1.4.6
-numpy==1.18.1
-opencv-python==4.2.0.32
 pprint==0.1
 pymongo==3.10.1
-PyMySQL==0.9.3
 python-dateutil==2.8.1
 pytz==2020.1
 s3transfer==0.3.3
