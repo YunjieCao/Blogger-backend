@@ -26,7 +26,7 @@ SECRET_KEY = 'w&(+8rq6ho0g7$y_h09u9e-x5w5)@0_kgto4(m=m&g!1zlb5_$'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-        'django-env.eba-x5bkbaxj.us-west-2.elasticbeanstalk.com', 
+        'django-env.eba-rt6pumb3.us-west-2.elasticbeanstalk.com',
         'blogger-backend-dev-env.eba-xbztnmzm.us-west-2.elasticbeanstalk.com',
         '127.0.0.1', '192.168.1.136'
 ]
