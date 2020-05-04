@@ -29,7 +29,7 @@ from .News import get_news
 urlpatterns = [
     path('', test.hello),
     path('admin/', admin.site.urls),
-    path('hello/', test.testdb),
+    # path('hello/', test.testdb),
     path('profile/<int:user_id>', user_info.get_profile),
     path('userInteraction/<int:target_id>', user_interaction.get_user_interaction),
     path('blogs/<int:user_id>', blog_list.get_user_blog_list),
