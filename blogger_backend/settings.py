@@ -25,7 +25,11 @@ SECRET_KEY = 'w&(+8rq6ho0g7$y_h09u9e-x5w5)@0_kgto4(m=m&g!1zlb5_$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-env.eba-x5bkbaxj.us-west-2.elasticbeanstalk.com', '127.0.0.1', '*']
+ALLOWED_HOSTS = [
+        'django-env.eba-rt6pumb3.us-west-2.elasticbeanstalk.com',
+        'blogger-backend-dev-env.eba-xbztnmzm.us-west-2.elasticbeanstalk.com',
+        '127.0.0.1', '192.168.1.136'
+]
 
 
 # Application definition
@@ -49,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
 

@@ -1,4 +1,3 @@
-import time
 from django.http import HttpResponse
 import json
 from BloggerModel.models import Blogs
@@ -41,7 +40,9 @@ def get_blog(request, blog_id):
         content_str = content["content"]
 
     # print(blog.timestamp)
-    create_time = time.strftime("%Y-%m-%d %H:%M")
+    # print(type(blog.timestamp))
+    create_time = blog.timestamp.strftime("%Y-%m-%d %H:%M")
+    print(create_time)
     blog_info = {
         "id": blog.id,
         "title": blog.title,
