@@ -21,7 +21,7 @@ class Blogs(models.Model):
     author = models.ForeignKey(Users, on_delete=models.CASCADE, default=None)
     title = models.CharField(max_length=50, default=None)
     description = models.CharField(max_length=200, default=None)
-    content = models.CharField(max_length=20, default=None)
+    content = models.CharField(max_length=30, default=None)
     # plan to use dynamodb to store content, only store key in mysql
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -40,8 +40,8 @@ class BlogTags(models.Model):
 class Comments(models.Model):
     comment_id = models.AutoField(primary_key=True)
     blog_id = models.ForeignKey(Blogs, on_delete=models.CASCADE, default=None)
-    uesr_id = models.ForeignKey(Users, on_delete=models.CASCADE, default=None)
-    content = content = models.CharField(max_length=20, default=None)
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE, default=None)
+    content = models.CharField(max_length=30, default=None)
     # plan to use dynamodb to store content, only store key in mysql
     timestamp = models.DateTimeField(auto_now_add=True)
 

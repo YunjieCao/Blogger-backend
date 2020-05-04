@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .Users import test
+# from .Users import test
 from .Users import user_info
 from .Users import user_interaction
 from .Blogs import blog_list
@@ -29,9 +29,9 @@ from .News import get_news
 from .News import get_news_list
 
 urlpatterns = [
-    path('', test.hello),
     path('admin/', admin.site.urls),
-    path('hello/', test.testdb),
+    # path('', test.hello),
+    # path('hello/', test.testdb),
     path('profile/<int:user_id>', user_info.get_profile),
     path('userInteraction/<int:target_id>', user_interaction.get_user_interaction),
     path('blogs/<int:user_id>', blog_list.get_user_blog_list),
@@ -42,6 +42,7 @@ urlpatterns = [
     path('unfollow/<int:follower_id>/<int:followee_id>', user_interaction.unfollow),
     path('check/<int:follower_id>/<int:followee_id>', user_interaction.check_follow),
     path('comment/<int:blog_id>/<int:user_id>', comments.add_comment),
+    path('comments/<int:blog_id>', comments.retrieve_comment),
     path('login', user_login.user_login),
     path('register', user_register.user_register),
     path('blogs/all_blogs', get_blog_list.get_blog_list),

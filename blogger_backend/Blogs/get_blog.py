@@ -1,4 +1,3 @@
-import datetime
 from django.http import HttpResponse
 import json
 from BloggerModel.models import Blogs
@@ -6,6 +5,7 @@ from blogger_backend.Blogs import mongo
 from BloggerModel.models import Users
 from django.db import IntegrityError
 from bson.objectid import ObjectId
+import datetime
 
 def get_blog(request, blog_id):
     msg = {
