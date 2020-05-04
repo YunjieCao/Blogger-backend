@@ -27,10 +27,11 @@ def post_new_blog(request):
         "message": "",
         "valid": False
     }
-    status_code = 201
+    status_code = 400  # for post, default as bad requests
     print(request)
     print(request.body)
     if not request.body:
+        status_code = 400 # bad request
         msg["message"] = "Format error or lack key infomation"
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
@@ -40,7 +41,8 @@ def post_new_blog(request):
     data = json.loads(data_str)
 
     if "user_id" not in data or not data["user_id"]:
-        msg["message"] = "Format error or lack key infomation"
+        status_code = 400 # bad request
+        msg["message"] = "Required user id to post the blog."
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
@@ -49,7 +51,8 @@ def post_new_blog(request):
     # judge whehter user exist
     author = Users.objects.get(id=user_id)
     if not author:
-        msg["message"] = "The required user does not exit or has not been recorded in the database"
+        status_code = 404
+        msg["message"] = "The required user does not exit or has not been recorded in the database."
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
@@ -76,6 +79,7 @@ def post_new_blog(request):
         article_id = result.inserted_id
         article_id = str(article_id)
     except:
+        status_code = 500 # internal server error
         msg["message"] = "Fail to store the content in MongoDB"
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
@@ -87,6 +91,7 @@ def post_new_blog(request):
         new_article.save()
         blog_id = new_article.id # can only get after save
     except IntegrityError as e:
+        status_code = 500  # internal server error
         msg["message"] = "Fail to store the data in sql. Error" + str(e)
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'

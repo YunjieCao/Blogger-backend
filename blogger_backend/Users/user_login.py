@@ -14,11 +14,12 @@ def user_login(request):
         "message": "",
         "valid": False
     }
-    status_code =  201
+    status_code =  404
     print(request)
     print(request.body)
     if not request.body:
-        msg["message"] = "Format error or lack key infomation"
+        status_code = 400
+        msg["message"] = "Format error or lack key infomation."
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
@@ -27,7 +28,8 @@ def user_login(request):
     data = json.loads(data_str)
 
     if "email" not in data or "password" not in data:
-        msg["message"] = "Format error or lack key infomation"
+        status_code = 400
+        msg["message"] = "Format error or lack key infomation."
         # ret = HttpResponse(status=201, content=json.dumps(msg), content_type="application/json")
         # return ret
     else:
@@ -35,11 +37,13 @@ def user_login(request):
         user_info = Users.objects.filter(email = email).values('id', 'pwd') # list of objects
 
         if not user_info:
+            status_code = 403 # request forbidden ?
             msg["message"] = "The email has not been registered."
 
         else:
             user_info = user_info[0]
             if password != user_info["pwd"]:
+                status_code = 403
                 # password mismatch
                 msg["message"] = "Password Incorrect!"
             else: # login successfully
