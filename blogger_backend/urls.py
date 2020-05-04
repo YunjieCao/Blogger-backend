@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .Users import test
+# from .Users import test
 from .Users import user_info
 from .Users import user_interaction
 from .Blogs import blog_list
@@ -27,8 +27,8 @@ from .Blogs import get_blog
 from .News import get_news
 
 urlpatterns = [
-    path('', test.hello),
     path('admin/', admin.site.urls),
+    # path('', test.hello),
     # path('hello/', test.testdb),
     path('profile/<int:user_id>', user_info.get_profile),
     path('userInteraction/<int:target_id>', user_interaction.get_user_interaction),
