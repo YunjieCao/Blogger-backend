@@ -3,7 +3,6 @@ import json
 from BloggerModel.models import Users
 
 
-
 def get_profile(request, user_id):
     # TODO: try catch
     """

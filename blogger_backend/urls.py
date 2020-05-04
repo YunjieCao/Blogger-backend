@@ -25,6 +25,7 @@ from .Users import user_login
 from .Users import user_register
 from .Blogs import get_blog
 from .News import get_news
+from .Users import user_blog
 
 urlpatterns = [
     path('', test.hello),
@@ -43,4 +44,5 @@ urlpatterns = [
     path('comments/<int:blog_id>', comments.retrieve_comment),
     path('login', user_login.user_login),
     path('register', user_register.user_register),
+    path('like/<int:blog_id>/<int:user_id>', user_blog.process_like_dislike),
 ]
