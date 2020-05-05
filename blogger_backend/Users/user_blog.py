@@ -31,7 +31,7 @@ def process_like_dislike(request, blog_id, user_id, action_type):
             rsp_msg = 'Something wrong with blog or user info'
     else:
         rsp_status = 400
-        rsp_msg = 'wrong action type'
+        rsp_msg = 'Wrong action type'
 
     ret = HttpResponse(status=rsp_status, reason=rsp_msg)
     return ret
