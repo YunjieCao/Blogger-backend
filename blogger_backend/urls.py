@@ -26,11 +26,8 @@ from .Users import user_login
 from .Users import user_register
 from .Blogs import get_blog
 from .News import get_news
-<<<<<<< HEAD
 from .Users import user_blog
-=======
 from .News import get_news_list
->>>>>>> master
 
 urlpatterns = [
     path('admin/', admin.site.urls),
