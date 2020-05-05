@@ -21,11 +21,12 @@ def user_register(request):
         "message": "",
         "valid": False
     }
-    status_code =  201
+    status_code =  400
     print(request)
     print(request.body)
     if not request.body:
-        msg["message"] = "Format error or lack key infomation"
+        status_code = 400
+        msg["message"] = "Format error or lack key infomation."
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
@@ -36,7 +37,8 @@ def user_register(request):
     required_attrs = {"email", "password", "name"}
     for attr in required_attrs:
         if attr not in data or not data[attr]:
-            msg["message"] = "Format error or lack key infomation"
+            status_code = 400
+            msg["message"] = "Format error or lack key infomation."
             ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
             ret['Access-Control-Allow-Origin'] = '*'
             return ret
@@ -59,6 +61,8 @@ def user_register(request):
             print(new_user)
             new_user.save()
         except:
+            status_code = 500
+            msg["message"] = "Fail to save in the databases."
             ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
             ret['Access-Control-Allow-Origin'] = '*'
             print(ret)
@@ -72,9 +76,11 @@ def user_register(request):
             msg["valid"] = True
             msg["message"] = "Register sucessfully! The user info: " + str(new_user)
         else:
+            status_code = 500
             msg["message"] = "The user with targeted email has not been recorded into the database correctly."
     else:
-        msg["message"] = "The email has been registered"
+        status_code = 403 # request forbidden
+        msg["message"] = "The email has been registered."
 
     ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'

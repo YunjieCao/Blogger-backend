@@ -21,11 +21,16 @@ from .Users import user_interaction
 from .Blogs import blog_list
 from .Blogs import new_blog
 from .Blogs import comments
+from .Blogs import get_blog_list
 from .Users import user_login
 from .Users import user_register
 from .Blogs import get_blog
 from .News import get_news
+<<<<<<< HEAD
 from .Users import user_blog
+=======
+from .News import get_news_list
+>>>>>>> master
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -45,4 +50,6 @@ urlpatterns = [
     path('login', user_login.user_login),
     path('register', user_register.user_register),
     path('like/<int:blog_id>/<int:user_id>/<int:action_type>', user_blog.process_like_dislike),
+    path('blogs/all_blogs', get_blog_list.get_blog_list),
+    path('news/all_news', get_news_list.get_news_list)
 ]

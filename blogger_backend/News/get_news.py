@@ -11,11 +11,12 @@ def get_news(request, news_id):
     msg = {
         "message": ""
     }
-    status_code = 201
+    status_code = 404
     # print(request)
     # print(request.body)
     if not news_id:
-        msg["message"] = "Need news id to retrive the infomation"
+        status_code = 400
+        msg["message"] = "Need news id to retrieve the infomation."
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
@@ -24,7 +25,8 @@ def get_news(request, news_id):
     # judge whehter user exist
     news = News.objects.get(id=news_id)
     if not news:
-        msg["message"] = "Required blog does not exist"
+        status_code = 403
+        msg["message"] = "Required news does not exist"
         ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret
@@ -36,6 +38,8 @@ def get_news(request, news_id):
     print(content)
     if not content:
         # can also return error message
+        status_code = 404
+        msg["message"] = "Content of the targeted news can not be retrieved."
         content_str= "[ERR 404]  NOT FOUND"
     else:
         content_str = content["content"]
@@ -51,8 +55,8 @@ def get_news(request, news_id):
     }
     # successfully log the data
     status_code = 200
-    msg["message"] = "Successfully retrieved the blog."
-    msg["blog"] = news_info
+    msg["message"] = "Successfully retrieved the news."
+    msg["news"] = news_info
     ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'
     return ret
