@@ -16,7 +16,8 @@ BLOG1: {
 '''
 def get_blog_list(request):
     msg = {
-        "message": ""
+        "message": "",
+        "status": 400,
     }
     status_code = 404
     # blog_lists = Blogs.objects.all()
@@ -50,6 +51,7 @@ def get_blog_list(request):
 
     msg["message"] = "Successfully retrieved all the blog lists."
     msg["blogs"] = res
+    msg["status"] = 200
     status_code = 200
     ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'

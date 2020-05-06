@@ -14,7 +14,8 @@ NEWS1: {
 '''
 def get_news_list(request):
     msg = {
-        "message": ""
+        "message": "",
+        "status": 400,
     }
     status_code = 404
     try:
@@ -47,6 +48,7 @@ def get_news_list(request):
     msg["message"] = "Successfully retrieved all the news lists."
     msg["news"] = res
     status_code = 200
+    msg["status"] = 200
     ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'
     return ret

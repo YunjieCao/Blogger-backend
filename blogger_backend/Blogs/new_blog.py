@@ -25,7 +25,8 @@ def post_new_blog(request):
     # changes: content to mangodb
     msg = {
         "message": "",
-        "valid": False
+        "valid": False,
+        "status": 400,
     }
     status_code = 400  # for post, default as bad requests
     print(request)
@@ -99,6 +100,7 @@ def post_new_blog(request):
     # suvessfully store
 
     status_code = 200
+    msg["status"] = 200
     msg["valid"] = True
     msg['content_id'] = article_id #
     msg['blog_id'] = blog_id

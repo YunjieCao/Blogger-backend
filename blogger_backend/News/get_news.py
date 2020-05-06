@@ -9,7 +9,8 @@ from bson.objectid import ObjectId
 
 def get_news(request, news_id):
     msg = {
-        "message": ""
+        "message": "",
+        "status": 400,
     }
     status_code = 404
     # print(request)
@@ -57,6 +58,7 @@ def get_news(request, news_id):
     status_code = 200
     msg["message"] = "Successfully retrieved the news."
     msg["news"] = news_info
+    msg["status"] = 200
     ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'
     return ret

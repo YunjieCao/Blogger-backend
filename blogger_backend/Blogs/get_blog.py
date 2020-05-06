@@ -9,7 +9,8 @@ import datetime
 
 def get_blog(request, blog_id):
     msg = {
-        "message": ""
+        "message": "",
+        "status": 400,
     }
     # status_code = 404
     # print(request)
@@ -59,6 +60,7 @@ def get_blog(request, blog_id):
     # successfully log the data
 
     msg["blog"] = blog_info
+    msg["status"] = 200
     ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
     ret['Access-Control-Allow-Origin'] = '*'
     return ret

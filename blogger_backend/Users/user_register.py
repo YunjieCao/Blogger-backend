@@ -19,7 +19,8 @@ def user_register(request):
     """
     msg = {
         "message": "",
-        "valid": False
+        "valid": False,
+        "status": 400,
     }
     status_code =  400
     print(request)
@@ -74,6 +75,7 @@ def user_register(request):
             status_code = 200
             msg["userId"] = new_user["id"]
             msg["valid"] = True
+            msg["status"] = 200
             msg["message"] = "Register sucessfully! The user info: " + str(new_user)
         else:
             status_code = 500

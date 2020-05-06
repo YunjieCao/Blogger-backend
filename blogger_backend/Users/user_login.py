@@ -12,7 +12,8 @@ def user_login(request):
     """
     msg = {
         "message": "",
-        "valid": False
+        "valid": False,
+        "status": 400
     }
     status_code =  404
     print(request)
@@ -50,6 +51,7 @@ def user_login(request):
                 status_code = 200
                 msg["message"] = "Successfully Login!"
                 msg["valid"] = True
+                msg["status"] = 200
                 msg["userId"] = user_info['id']
 
         # ret['Content-Type'] = 'text/html'
