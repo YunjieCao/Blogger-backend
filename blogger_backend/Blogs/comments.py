@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from BloggerModel.models import Comments
 
 
-def add_comment(request, blog_id, user_id):
+def add_comment(request):
     """
     store comment to db
     :param request: request from frontend
@@ -19,8 +19,17 @@ def add_comment(request, blog_id, user_id):
 
     try:
         data = str(request.body, encoding='utf-8')   # {"comment": "do you like it?"}
+
         data = json.loads(data)
-        assert data.has_key('comment')
+
+        required_fields = ['comment', 'blog_id', 'user_id']
+        for field in required_fields:
+            assert field in data
+        blog_id = data['blog_id']
+        user_id = data['user_id']
+        del data['blog_id']
+        del data['user_id']
+
     except Exception as e:
         rsp_status = 400
         rsp_msg = 'Bad request format'
