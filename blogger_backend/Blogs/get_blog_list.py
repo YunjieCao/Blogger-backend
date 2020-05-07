@@ -1,9 +1,7 @@
-import time
 from django.http import HttpResponse
 import json
 from BloggerModel.models import Blogs
-from blogger_backend.Blogs import mongo
-from BloggerModel.models import Users
+from blogger_backend.error_code import Error
 '''
 BLOG1: {
 	title: str,
@@ -15,26 +13,15 @@ BLOG1: {
 
 '''
 def get_blog_list(request):
-    msg = {
-        "message": "",
-        "status": 400,
-    }
-    status_code = 404
-    # blog_lists = Blogs.objects.all()
+    error = Error()
     try:
         blog_lists = Blogs.objects.all()
     except:
-        status_code = 500
-        msg["message"] = "Fail to retrieve data."
-        ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
-        ret['Access-Control-Allow-Origin'] = '*'
-        return ret
+        return error.send_response(11)
+
     print(blog_lists)
     if not blog_lists:
-        msg["message"] = "No blogs recorded in the database."
-        ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
-        ret['Access-Control-Allow-Origin'] = '*'
-        return ret
+        return error.send_response(11)
     res = []
 
 
@@ -49,10 +36,6 @@ def get_blog_list(request):
         res.append(blog_info)
     res.sort(key = lambda blog: blog['date'], reverse= True)
 
-    msg["message"] = "Successfully retrieved all the blog lists."
-    msg["blogs"] = res
-    msg["status"] = 200
-    status_code = 200
-    ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
-    ret['Access-Control-Allow-Origin'] = '*'
-    return ret
+    other_attrs = dict()
+    other_attrs["blogs"] = res
+    return error.send_response(1, other_attrs)

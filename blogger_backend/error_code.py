@@ -1,3 +1,6 @@
+from django.http import HttpResponse
+import json
+
 class Singleton(object):
     def __init__(self, cls):
         self._cls = cls
@@ -21,6 +24,13 @@ class Error(object):
         self.error_code[6] = 'Bad request format'
         self.error_code[7] = 'MongoDB failed'
         self.error_code[8] = 'Something wrong with blog info'
+        self.error_code[9] = 'Invalid blog / news id'
+        self.error_code[10] = 'Can not find blog / news'
+        self.error_code[11] = 'Fail to retrieve data from mysql'
+        self.error_code[12] = 'Fail to store data in sql'
+        self.error_code[13] = "[User Registeration] The email has been registered."
+        self.error_code[14] = "[User Login] The email has not been registered."
+        self.error_code[15] = "[User Login] Password incorrect. "
 
 
     def add_error(self, code, message):
@@ -31,3 +41,13 @@ class Error(object):
             return self.error_code[code]
         else:
             return 'Undefined error type'
+
+    def send_response(self, code, other_attrs = None):
+        body = dict()
+        body["status"] = code
+        body["message"] = self.get_message(code)
+        body.update(other_attrs)
+        ret = HttpResponse(content=json.dumps(body), content_type="application/json")
+        ret['Access-Control-Allow-Origin'] = '*'
+        return ret
+

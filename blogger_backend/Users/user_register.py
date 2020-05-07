@@ -1,8 +1,7 @@
-import datetime
-
 from django.http import HttpResponse
 import json
 from BloggerModel.models import Users
+from blogger_backend.error_code import Error
 
 # some default values for not essential fields
 DEFAULT_BIRTHDAY_STR = "1970-01-01"
@@ -17,20 +16,16 @@ def user_register(request):
         message: str(explain for status),
          valid: boolean}
     """
-    msg = {
-        "message": "",
-        "valid": False,
-        "status": 400,
-    }
-    status_code =  400
-    print(request)
-    print(request.body)
+    # msg = {
+    #     "message": "",
+    #     "valid": False,
+    #     "status": 400,
+    # }
+    # status_code =  400
+
+    error = Error()
     if not request.body:
-        status_code = 400
-        msg["message"] = "Format error or lack key infomation."
-        ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
-        ret['Access-Control-Allow-Origin'] = '*'
-        return ret
+        return error.send_response(6)
 
     data_str= str(request.body, encoding='utf-8')
     data = json.loads(data_str)
@@ -38,11 +33,9 @@ def user_register(request):
     required_attrs = {"email", "password", "name"}
     for attr in required_attrs:
         if attr not in data or not data[attr]:
-            status_code = 400
-            msg["message"] = "Format error or lack key infomation."
-            ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
-            ret['Access-Control-Allow-Origin'] = '*'
-            return ret
+            # status_code = 400
+            # msg["message"] = "Format error or lack key infomation."
+            return error.send_response(6)
 
     email = data["email"]
     user_info = Users.objects.filter(email = email).values() # list of object
@@ -62,28 +55,18 @@ def user_register(request):
             print(new_user)
             new_user.save()
         except:
-            status_code = 500
-            msg["message"] = "Fail to save in the databases."
-            ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
-            ret['Access-Control-Allow-Origin'] = '*'
-            print(ret)
+            return error.send_response(12)
         # sucessfuly add
         user_info = Users.objects.filter(email=email).values()
+        other_attrs = {}
         if user_info:
             print(user_info)
             new_user = user_info[0]
-            status_code = 200
-            msg["userId"] = new_user["id"]
-            msg["valid"] = True
-            msg["status"] = 200
-            msg["message"] = "Register sucessfully! The user info: " + str(new_user)
+            return error.send_response(1, {"userId": new_user["id"]})
+            # msg["valid"] = True
+            # msg["status"] = 200
+            # msg["message"] = "Register sucessfully! The user info: " + str(new_user)
         else:
-            status_code = 500
-            msg["message"] = "The user with targeted email has not been recorded into the database correctly."
+            return error.send_response(12)
     else:
-        status_code = 403 # request forbidden
-        msg["message"] = "The email has been registered."
-
-    ret = HttpResponse(status=status_code, content=json.dumps(msg), content_type="application/json")
-    ret['Access-Control-Allow-Origin'] = '*'
-    return ret
+        return error.send_response(13)
