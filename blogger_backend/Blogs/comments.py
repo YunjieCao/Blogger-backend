@@ -79,7 +79,7 @@ def retrieve_comment(request, blog_id):
     rsp_status = 1
 
     try:
-        data = Comments.objects.filter(blog_id_id=blog_id).select_related('user_id').values('blog_id', 'user_id', 'content', 'user_id__name')  # list of objects
+        data = Comments.objects.filter(blog_id_id=blog_id).select_related('user_id').values('comment_id', 'blog_id', 'user_id', 'content', 'timestamp', 'user_id__name')  # list of objects
     except Exception as e:
         rsp_status = 8
         ret = HttpResponse()
@@ -110,6 +110,7 @@ def retrieve_comment(request, blog_id):
             for r in res:
                 comment_body += r['comment']
             d['content'] = comment_body
+            d['timestamp'] = json.dumps(d['timestamp'], indent=4, sort_keys=True, default=str)
             ret_data.append(d)
             if len(ret_data) > 10:
                 break
