@@ -46,7 +46,8 @@ class Error(object):
         body = dict()
         body["status"] = code
         body["message"] = self.get_message(code)
-        body.update(other_attrs)
+        if other_attrs:
+            body.update(other_attrs)
         ret = HttpResponse(content=json.dumps(body), content_type="application/json")
         ret['Access-Control-Allow-Origin'] = '*'
         return ret

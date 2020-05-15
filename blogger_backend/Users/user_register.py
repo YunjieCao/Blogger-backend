@@ -2,7 +2,7 @@ from django.http import HttpResponse
 import json
 from BloggerModel.models import Users
 from blogger_backend.error_code import Error
-
+from django.db import IntegrityError
 # some default values for not essential fields
 DEFAULT_BIRTHDAY_STR = "1970-01-01"
 DEFAULT_INTRO = "A wonderful blog writer"
@@ -24,9 +24,11 @@ def user_register(request):
     # status_code =  400
 
     error = Error()
+    print(request)
     if not request.body:
         return error.send_response(6)
 
+    print(request.body)
     data_str= str(request.body, encoding='utf-8')
     data = json.loads(data_str)
 
@@ -47,18 +49,19 @@ def user_register(request):
         birthday = data["birthday"] if "birthday" in data else DEFAULT_BIRTHDAY_STR # if empty, enter default time
         occupation = str(data["occupation"]) if "occupation" in data else " "
         introduction = str(data["introduction"]) if "introduction" in data else DEFAULT_INTRO
-        avatar = data["avatar"] if "avatar" in data else DEFAULT_AVATAR
-        gender = data["gender"] if "gender" in data else DEFAULT_GENDER_SET
+        avatar = data["avatar"] if "avatar" in data and data["avatar"] else DEFAULT_AVATAR
+        gender = data["gender"] if "gender" in data and data["gender"] else DEFAULT_GENDER_SET
         try:
             new_user = Users(email = email, pwd = pwd, name = name, birthday = birthday,
                              occupation = occupation, introduction = introduction, avatar = avatar, gender = gender)
             print(new_user)
             new_user.save()
-        except:
+        except IntegrityError as e:
+            print(e.message)
             return error.send_response(12)
         # sucessfuly add
         user_info = Users.objects.filter(email=email).values()
-        other_attrs = {}
+        print(user_info)
         if user_info:
             print(user_info)
             new_user = user_info[0]
