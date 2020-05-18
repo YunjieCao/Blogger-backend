@@ -20,7 +20,7 @@ class Singleton(object):
 class Mongo(object):
     def __init__(self):
         self.client = pymongo.MongoClient(
-                "mongodb+srv://documents:cloudcomputing@cluster0-byuor.mongodb.net/test?retryWrites=true&w=majority")
+                "your mongodb link")
         self.database = self.client.dev
 
         # collection for blogs
