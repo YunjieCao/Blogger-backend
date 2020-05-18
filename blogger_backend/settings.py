@@ -26,9 +26,7 @@ SECRET_KEY = 'w&(+8rq6ho0g7$y_h09u9e-x5w5)@0_kgto4(m=m&g!1zlb5_$'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-        'django-env.eba-rt6pumb3.us-west-2.elasticbeanstalk.com',
-        'blogger-backend-dev-env.eba-xbztnmzm.us-west-2.elasticbeanstalk.com',
-        '127.0.0.1', '192.168.1.136'
+        '127.0.0.1'
 ]
 
 
@@ -85,10 +83,10 @@ WSGI_APPLICATION = 'blogger_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blogger',
-        'USER': 'admin',
-        'PASSWORD': 'cloudcomputing',
-        'HOST': 'blogger-mysql.cp2o8exigrko.us-east-1.rds.amazonaws.com',
+        'NAME': '<Your database name>',
+        'USER': '<Your user name>',
+        'PASSWORD': '<Your pwd>',
+        'HOST': '<Your host>',
         'PORT': '3306',
     }
 }
