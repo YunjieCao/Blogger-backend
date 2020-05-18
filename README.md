@@ -23,14 +23,14 @@ DATABASES = {}
 ```
 - Create an app
 ```
-   django-admin startapp <YourApp>
-   Append created app to INSTALLED_APPS blogger_backend/settings.py
+django-admin startapp <YourApp>
+Append created app to INSTALLED_APPS blogger_backend/settings.py
 ```
 - Define data models in &lt;YourApp&gt;/models.py
 ```
-  python manage.py migrate   # create data model
-  python manage.py makemigrations <YourApp>  # execute when modify data models
-  python manage.py migrate <YourApp>
+python manage.py migrate   # create data model
+python manage.py makemigrations <YourApp>  # execute when modify data models
+python manage.py migrate <YourApp>
 ```
 - Run the backend locally
 ```
